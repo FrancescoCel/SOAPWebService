@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="c6a3d152-76c6-4a32-a4d2-cb4dce10a0b1" activeEnvironment="Default" name="SOASEC" resourceRoot="" soapui-version="5.6.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="6ce89e28-ed00-45f1-97d8-dfd343f4d94c" wsaVersion="NONE" name="ProvaWSSoap12Binding" type="wsdl" bindingName="{http://progettoWS}ProvaWSSoap12Binding" soapVersion="1_2" anonymous="optional" definition="http://localhost:8080/WebServiceProject/services/ProvaWS?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://localhost:8080/WebServiceProject/services/ProvaWS.ProvaWSHttpSoap12Endpoint/</con:endpoint></con:endpoints><con:operation id="267a5943-1f59-4f9a-92c9-0f262fb9ea39" isOneWay="false" action="urn:access" name="access" bindingOperationName="access" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="779dc017-e179-4b0e-afb5-32caec0b4ebd" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/WebServiceProject/services/ProvaWS.ProvaWSHttpSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:prog="http://progettoWS">\r
+   <soap:Header/>\r
+   <soap:Body>\r
+      <prog:access>\r
+         <!--Optional:-->\r
+         <prog:nCard>?</prog:nCard>\r
+         <!--Optional:-->\r
+         <prog:pin>?</prog:pin>\r
+      </prog:access>\r
+   </soap:Body>\r
+</soap:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:access"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="8128ac01-344d-4ead-ab0d-73be4a0de523" wsaVersion="NONE" name="ProvaWSSoap11Binding" type="wsdl" bindingName="{http://progettoWS}ProvaWSSoap11Binding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/WebServiceProject/services/ProvaWS?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/WebServiceProject/services/ProvaWS?wsdl"><con:part><con:url>http://localhost:8080/WebServiceProject/services/ProvaWS?wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://progettoWS" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="http://progettoWS" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl">
+  <wsdl:documentation>Please Type your service description here</wsdl:documentation>
+  <wsdl:types>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://progettoWS">
+      <xs:element name="access">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="nCard" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="pin" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="accessResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="accessRequest">
+    <wsdl:part name="parameters" element="ns:access"/>
+  </wsdl:message>
+  <wsdl:message name="accessResponse">
+    <wsdl:part name="parameters" element="ns:accessResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="ProvaWSPortType">
+    <wsdl:operation name="access">
+      <wsdl:input message="ns:accessRequest" wsaw:Action="urn:access"/>
+      <wsdl:output message="ns:accessResponse" wsaw:Action="urn:accessResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ProvaWSSoap11Binding" type="ns:ProvaWSPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="access">
+      <soap:operation soapAction="urn:access" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ProvaWSSoap12Binding" type="ns:ProvaWSPortType">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="access">
+      <soap12:operation soapAction="urn:access" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ProvaWSHttpBinding" type="ns:ProvaWSPortType">
+    <http:binding verb="POST"/>
+    <wsdl:operation name="access">
+      <http:operation location="access"/>
+      <wsdl:input>
+        <mime:content type="application/xml" part="parameters"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content type="application/xml" part="parameters"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ProvaWS">
+    <wsdl:port name="ProvaWSHttpSoap11Endpoint" binding="ns:ProvaWSSoap11Binding">
+      <soap:address location="http://localhost:8080/WebServiceProject/services/ProvaWS.ProvaWSHttpSoap11Endpoint/"/>
+    </wsdl:port>
+    <wsdl:port name="ProvaWSHttpSoap12Endpoint" binding="ns:ProvaWSSoap12Binding">
+      <soap12:address location="http://localhost:8080/WebServiceProject/services/ProvaWS.ProvaWSHttpSoap12Endpoint/"/>
+    </wsdl:port>
+    <wsdl:port name="ProvaWSHttpEndpoint" binding="ns:ProvaWSHttpBinding">
+      <http:address location="http://localhost:8080/WebServiceProject/services/ProvaWS.ProvaWSHttpEndpoint/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/WebServiceProject/services/ProvaWS.ProvaWSHttpSoap11Endpoint/</con:endpoint></con:endpoints><con:operation id="97ed6b9d-09fc-4e6c-9b27-0cbda9fd5a02" isOneWay="false" action="urn:access" name="access" bindingOperationName="access" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="88b9a111-761d-4ba9-848b-8342d48f4942" name="Request 1" outgoingWss="outgoing"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/WebServiceProject/services/ProvaWS.ProvaWSHttpSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:prog="http://progettoWS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <prog:access>\r
+         <!--Optional:-->\r
+         <prog:nCard>1234</prog:nCard>\r
+         <!--Optional:-->\r
+         <prog:pin>0000</prog:pin>\r
+      </prog:access>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:username/><con:password/><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:preemptive>false</con:preemptive><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:access"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite id="3c6dc473-bc3f-4360-9123-a6a67bac60a1" name="TestSuite 1"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="1fbc81f2-0375-4353-b31d-63841c69f981" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestCase 1" searchProperties="true"><con:settings/><con:testStep type="request" id="aaaecc9f-faf7-4a6b-a169-bf35f79c03d4" name="access - Request 1"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ProvaWSSoap11Binding</con:interface><con:operation>access</con:operation><con:request name="access - Request 1" outgoingWss="outgoing" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="ec421f6b-29e8-42e1-9f1b-5f4538eccd91"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/WebServiceProject/services/ProvaWS.ProvaWSHttpSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:prog="http://progettoWS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <prog:access>\r
+         <!--Optional:-->\r
+         <prog:nCard>1234</prog:nCard>\r
+         <!--Optional:-->\r
+         <prog:pin>0000</prog:pin>\r
+      </prog:access>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="f20f0d99-32d3-4b30-a064-99d82d79a4d9" name="SOAP Response"/><con:credentials><con:username/><con:password/><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>false</con:preemptive><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:access"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer><con:crypto><con:source>C:/Users/utente/Desktop/mykeystore.jks</con:source><con:password>soasec</con:password><con:type>KEYSTORE</con:type></con:crypto><con:outgoing><con:name>outgoing</con:name><con:entry type="Encryption" username="myservercert" password="soasec"><con:configuration><crypto>mykeystore.jks</crypto><keyIdentifierType>2</keyIdentifierType><symmetricEncAlgorithm/><encKeyTransport/><embeddedKeyName/><embeddedKeyPassword/><encryptionCanonicalization/><encryptSymmetricKey>true</encryptSymmetricKey></con:configuration></con:entry></con:outgoing></con:wssContainer><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation><ProjectSpecificExposureList>null###null</ProjectSpecificExposureList></con:sensitiveInformation></con:soapui-project>
